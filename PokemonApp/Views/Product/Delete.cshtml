@@ -1,0 +1,22 @@
+﻿@model Application.ViewModels.ProPokeViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row">
+    <div  class="card"> 
+        <div class="card-header bg-danger text-light">
+
+            <h4>Estas seguro de querer eliminar el pokemon @Model.Name?</h4>
+        </div>
+        <div class="card-bpdy">
+            <form method="post" asp-controller="Product" asp-action="DeletePost">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger">Eliminar </button>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-warning">Cancelar </a>
+            </form>
+        </div>
+    </div>
+
+</div>
+

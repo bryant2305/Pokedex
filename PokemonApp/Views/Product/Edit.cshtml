@@ -1,0 +1,67 @@
+﻿@model Application.ViewModels.ProPokeViewModel
+@{
+    ViewData["Title"] = "Editar Pokemon";
+}
+
+<div class="container-fluid">
+    <div class="col-sm-6 offset-sm-3">
+        <div class="card">
+            <div class="card-header text-center">
+               Editar Pokemon
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Product" asp-action="Edit">
+                    <div class="mb-3">
+                      <label asp-for="Name" class="form-label">Nombre</label>
+                      <input type="text" asp-for="Name" class="form-control" id="Nombre" placeholder="Escriba el pokemon">
+                      <span asp-validation-for="Name"></span>
+                    </div>
+                    <div class="mb-3">
+                      <label asp-for="ImageUrl" class="form-label">Link de la imagen</label>
+                      <input type="text" asp-for="ImageUrl" class="form-control" id="LinkUrl" placeholder="https//imgurl.com/charmander.jpg">
+                      <span asp-validation-for="ImageUrl"></span>
+                    </div>
+
+                    <div class="mb-3">
+                      <label asp-for="RegionId" class="form-label">Region</label>
+                      <select asp-for="RegionId" class="form-select">
+                            @foreach (Application.ViewModels.RegionViewModel region in ViewBag.Region)
+                            {
+                                    <option value="@region.Id">@region.Name</option>
+                            }
+                      </select>
+                      <span asp-validation-for="RegionId"></span>
+                    </div>
+
+                    <div class="mb-3">
+                      <label asp-for="TipoId" class="form-label">Tipo Principal</label>
+                      <select asp-for="TipoId" class="form-select">
+                            @foreach (Application.ViewModels.TipoViewModel tipo in ViewBag.Tipo)
+                            {
+                                <option value="@tipo.Id">@tipo.Name</option>
+                            }
+                      </select>
+                      <span asp-validation-for="TipoId"></span>
+                    </div>                
+
+                    <div class="mb-3">
+                      <label asp-for="TipoIdSec" class="form-label">Tipo Secundario</label>
+                      <select asp-for="TipoIdSec" class="form-select">
+                            @foreach (Application.ViewModels.TipoViewModel tipo in ViewBag.Tipo)
+                            {
+                                <option value="@tipo.Id">@tipo.Name</option>
+                            }
+                      </select>
+                    </div>        
+
+                    <input type="hidden" asp-for="Id"/>
+
+                    <button type="submit" asp-controller="Product" asp-action="Edit" class="btn btn-success position-absolute top-100 start-50 translate-middle btn-lg">
+                       Editar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>

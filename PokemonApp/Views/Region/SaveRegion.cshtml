@@ -1,0 +1,30 @@
+﻿@model Application.ViewModels.RegionViewModel
+@{
+    bool mode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "Regiones";
+}
+
+<div class="container">
+    <div class="col-sm-6 offset-sm-3">
+        <div class="card">
+            <div class="card-header text-center">
+                @(mode ? "Editar" : "Crear") Pokemon
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Region" asp-action="@(mode ? "Edit" : "Create")">
+                    <div class="mb-3">
+                      <label asp-for="Name" class="form-label">Nombre</label>
+                      <input type="text" asp-for="Name" class="form-control" id="Nombre" placeholder="Fuego">
+                      <span asp-validation-for="Name"></span>
+                    </div>
+
+                    <input type="hidden" asp-for="Id"/>
+
+                    <button type="submit" asp-controller="Region" asp-action="@(mode ? "Edit" : "Create")" class="btn btn-success position-absolute top-100 start-50 translate-middle btn-lg">
+                        @(mode ? "Editar" : "Crear")
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

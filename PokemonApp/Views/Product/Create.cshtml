@@ -1,0 +1,74 @@
+﻿
+@model Application.ViewModels.ProPokeViewModel
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "Crear Pokemon";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card header bg-dark text-light">
+                <h4>@(editMode ? $"Editando un Pokemon: {Model.Name}": "Creando un nuevo Pokemon")</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Product" asp-action="@(editMode ? "Update": "Create")">
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"> Nombre</label>
+                        <input  type="text" asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+
+                     <div class="mb-3">
+                        <label asp-for="ImageUrl" class="form-label"> Img Url</label>
+                        <input  type="text" asp-for="ImageUrl" class="form-control" />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                    </div>
+
+                     <div class="mb-3">
+                        <label asp-for="RegionId" class="form-label"> Region</label>
+                        <select asp-for="RegionId" class="form-select">
+                        @foreach (Application.ViewModels.RegionViewModel region in ViewBag.Region){
+                            <option value="@region.Id">@region.Name</option>
+                        }
+                        </select>
+                        <span asp-validation-for="RegionId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="TipoId" class="form-label"> Tipo primario</label>
+                        <select asp-for="TipoId" class="form-select">
+                            @foreach (Application.ViewModels.TipoViewModel tipo in ViewBag.Tipo)
+                            {
+                                    <option value="@tipo.Id">@tipo.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="TipoId" class="text-danger"></span>
+                    </div>
+                     <div class="mb-3">
+                        <label asp-for="TipoIdSec" class="form-label"> Tipo secundario</label>
+                        <select asp-for="TipoIdSec" class="form-select">
+                            
+                            @foreach (Application.ViewModels.TipoViewModel tipo in ViewBag.Tipo)
+                            {
+                                        <option value="@tipo.Id">@tipo.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="TipoIdSec" class="text-danger"></span>
+                    </div>
+                    
+
+
+
+                    <input  type="hidden" asp-for="Id"/>
+
+                    <button type="submit" class="btn btn-primary"> Guardar</button>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-warning">Volver atras </a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

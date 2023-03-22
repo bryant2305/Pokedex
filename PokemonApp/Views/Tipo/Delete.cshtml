@@ -1,0 +1,26 @@
+﻿@model Application.ViewModels.TipoViewModel;
+@{
+    ViewData["Title"] = "Eliminar Tipo";
+}
+
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-danger text-light">
+                <h4>Estas Seguro que desea eliminar el Tipo?</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Tipo" asp-action="DeletePost">
+                    <input type= "hidden" asp-for="Id"/>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a asp-controller="Tipo" asp-action="TipoForm" class="btn btn-warning">Cancelar</a>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

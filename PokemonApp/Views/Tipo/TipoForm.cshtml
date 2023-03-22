@@ -1,0 +1,36 @@
+﻿@model List<Application.ViewModels.TipoViewModel>
+@{
+    ViewData["Title"] = "Tipo";
+}
+
+<div class="container">
+    <div class="row">
+        <a asp-controller="Tipo" asp-action="Create" class="btn btn-outline-success col-12 col-md-2 offset-md-9">Crear nuevo tipo</a>
+    </div>
+    <br />
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @if (Model == null || Model.Count == 0)
+        {
+                <h2>No Hay Tipos</h2>
+        }
+        else
+        {
+            @foreach (Application.ViewModels.TipoViewModel item in Model)
+            {
+                            <div class="col-md-4">
+                            <div class="card shadow-sm text-center">
+                                <div class="card-body">
+                                    <p class="card-text h3">@item.Name</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a type="button" asp-controller="Tipo" asp-action="Edit" asp-route-Id="@item.Id" class="btn btn-sm btn-warning">Editar</a>
+                                            <a type="button" asp-controller="Tipo" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-sm btn-danger">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            }
+        }
+    </div>
+</div>
